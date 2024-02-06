@@ -44,7 +44,8 @@
 
       nav {
         align-items: center;
-        background: var(--white);
+        background: hsl(0 0% 100% / 0.75);
+        backdrop-filter: blur(4px);
         display: flex;
         height: var(--nav);
         position: fixed;
@@ -52,6 +53,7 @@
         width: 100%;
         z-index: 9999;
         border-bottom: 2px solid #5c0505;
+        justify-content: space-around;
       }
 
       a {
@@ -59,13 +61,7 @@
       }
 
       a svg {
-        width: 48px;
-      }
-
-      .content {
-        margin: 0 auto;
-        max-width: 100%;
-        width: 80ch;
+        /* width: 48px; */
       }
 
       section {
@@ -75,7 +71,6 @@
 
       nav div,
       main div {
-        width: 100vw;
         background: var(--white);
       }
 
@@ -112,7 +107,18 @@
       }
 
       main > section .content {
-        padding: 0 1rem;
+        padding: 5rem 1rem;
+        text-align: center;
+      }
+
+      main > section .content p:nth-child(1) {
+        line-height: 5%;
+      }
+      main > section .content p:nth-child(2) {
+        font-size: 1rem;
+        width: 80%;
+        height: auto;
+        margin: 0 auto;
       }
 
       p {
@@ -151,7 +157,7 @@
       .container > header h1 {
         color: #5c0505;
         font-weight: 200;
-        width: 80rem;
+        width: 100rem;
       }
 
       .container .header .bcc-header {
@@ -159,7 +165,6 @@
         top: 0;
         height: 10rem;
         width: 100%;
-        background-color: red;
       }
 
       main {
@@ -181,16 +186,6 @@
         overflow: hidden;
       }
 
-      .container main section {
-        clip-path: inset(
-          calc(
-              (var(--nav) + var(--font-size) + var(--padding) + var(--padding)) *
-                (var(--explode) * 0.5)
-            )
-            0 0 0
-        );
-        transition: clip-path 0.5s;
-      }
       main > div {
         background: hsl(0 0% 100% / calc(1 - var(--explode)));
         clip-path: inset(
@@ -211,6 +206,89 @@
         overflow-x: hidden;
         position: relative;
         z-index: 2;
+      }
+
+      .nav-items {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2rem;
+        background-color: transparent;
+      }
+
+      .nav-items li,
+      .nav-items li a {
+        list-style-type: none;
+        text-decoration: none;
+      }
+
+      .nav-items li a:hover,
+      .nav-items li a:active,
+      .nav-items li a:visited,
+      .nav-items li a:any-link {
+        text-decoration: underline;
+
+        text-decoration-style: wavy;
+        text-decoration-color: var(--secondary);
+      }
+
+      /* BACKGROUND MOVE */
+      .button-background-move {
+        font-size: 0.8rem;
+        font-weight: 200;
+        letter-spacing: 1px;
+        padding: 0.7rem 1.3rem 0.7rem;
+        outline: 0;
+        border: 1px solid #5c0505;
+        cursor: pointer;
+        position: relative;
+        background-color: rgba(0, 0, 0, 0);
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+      }
+
+      .button-background-move:after {
+        content: "";
+        background-color: var(--secondary);
+        width: 100%;
+        z-index: -1;
+        position: absolute;
+        height: 100%;
+        top: 7px;
+        left: 7px;
+        transition: 0.2s;
+      }
+
+      .button-background-move:hover:after {
+        top: 0px;
+        left: 0px;
+      }
+
+      @media (min-width: 768px) {
+        .button-background-move {
+          padding: 0.8rem 2rem 0.7rem;
+        }
+      }
+
+      main > section .features-container p {
+        line-height: 5%;
+      }
+
+      section .features-container .card {
+        padding: 0 0 5rem 0;
+      }
+
+      .features-container .card .paragraph__d {
+        font-size: 1rem;
+        width: 80%;
+        height: auto;
+      }
+
+      .section__e {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
       }
     </style>
     <div class="container">
@@ -248,20 +326,34 @@
             </svg>
           </a>
         </div>
+        <div class="nav-items">
+          <li>
+            <a href="#home">Home</a>
+          </li>
+
+          <li>
+            <a href="#library">Library</a>
+          </li>
+
+          <li>
+            <a href="#announcement">Announcement</a>
+          </li>
+
+          <li>
+            <a href="#announcement">Contact Us</a>
+          </li>
+        </div>
+
+        <button class="button-background-move" role="button">Login</button>
       </nav>
       <header aria-hidden="true">
         <h1>Binangonan Catholic College Library</h1>
       </header>
       <main>
         <div>
-          <header>
-            <h1>Open Public Access Catalog</h1>
-          </header>
+          <header></header>
           <section>
-            <!-- <div class="bg-bcc"> -->
             <img class="second" src="../bg.jpg" alt="" />
-            <!-- <img class="second" src="../bg.jpg" alt="" /> -->
-            <!-- </div> -->
 
             <img
               src="../bg2.jpg"
@@ -271,7 +363,56 @@
         </div>
         <section>
           <div class="content">
-            <p>Ako lang naman to'<br />It's pretty amazing shit.</p>
+            <p>Platform Features</p>
+            <p>
+              Explore the World of Knowledge with OPAC: Your Passport to
+              Empowerment. Connect, Learn, and Grow as You Navigate Our
+              Extensive Resources, Fostering Lifelong Learning for All.
+            </p>
+          </div>
+
+          <div class="features-container">
+            <div class="card card-color-0">
+              <div class="border"></div>
+              <img
+                src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/53148/deathtostock-00.jpg"
+              />
+              <p>Accessibility</p>
+              <p class="paragraph__d">
+                Ensure the e-library is accessible to all users, following web
+                accessibility standards.
+              </p>
+            </div>
+            <div class="card card-color-2">
+              <div class="border"></div>
+              <img
+                src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/53148/deathtostock-02.jpg"
+              />
+              <p>Book Discovery</p>
+              <p class="paragraph__d">
+                Enable easy navigation and intuitive search functionality for
+                finding books.
+              </p>
+            </div>
+
+            <div class="card card-color-1">
+              <div class="border"></div>
+              <img
+                src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/53148/deathtostock-01.jpg"
+              />
+              <p>User Friendly</p>
+              <p class="paragraph__d">
+                Experience that's effortless to navigate, catering to users of
+                all levels.
+              </p>
+            </div>
+          </div>
+
+          <div class="section__e">
+            <img
+              src="../bg3.jpg"
+              alt="Jhey walks across a stage at All Day Hey! 2022"
+            />
           </div>
         </section>
         <footer>
